@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "hardhat/console.sol";
 
-// We need to import the helper functions from the contract that we copy/pasted.
+//  import the helper functions from the contract 
 import {Base64} from "./libraries/Base64.sol";
 
 contract MyEpicNFT is ERC721URIStorage {
@@ -49,7 +49,7 @@ contract MyEpicNFT is ERC721URIStorage {
         view
         returns (string memory)
     {
-        // I seed the random generator. More on this in the lesson.
+        // I seed the random generator.
         uint256 rand = random(
             string(abi.encodePacked("FIRST_WORD", Strings.toString(tokenId)))
         );
@@ -82,7 +82,7 @@ contract MyEpicNFT is ERC721URIStorage {
         return thirdWords[rand];
     }
 
-    // Same old stuff, pick a random color.
+    //  pick a random color.
     function pickRandomColor(uint256 tokenId)
         public
         view
@@ -137,10 +137,10 @@ contract MyEpicNFT is ERC721URIStorage {
                 string(
                     abi.encodePacked(
                         '{"name": "',
-                        // We set the title of our NFT as the generated word.
+                        // set the title of our NFT as the generated word.
                         combinedWord,
                         '", "description": "A highly acclaimed collection of squares.", "image": "data:image/svg+xml;base64,',
-                        // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
+                        //add data:image/svg+xml;base64 and then append our base64 encode our svg.
                         Base64.encode(bytes(finalSvg)),
                         '"}'
                     )
@@ -148,7 +148,7 @@ contract MyEpicNFT is ERC721URIStorage {
             )
         );
 
-        // Just like before, we prepend data:application/json;base64, to our data.
+        // prepend data:application/json;base64, to our data.
         string memory finalTokenUri = string(
             abi.encodePacked("data:application/json;base64,", json)
         );
